@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bottom_menu_selected">#F5C713</color>
+    <color name="bottom_menu_normal">#7C7B7E</color>
+    <color name="default_text_color">#817F7C</color>
+    <color name="recommended_title_text_color">#909097</color>
+    <color name="recommended_content_text_color">#dcd79e</color>
+    <color name="gold">#ffd700</color>
+    <color name="deeper_gold">#daa520</color>
+    <color name="shimmer_item_background">#333233</color>
+    <color name="recipe_item_title_default">#D8D8D8</color>
+
+</resources>

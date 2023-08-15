@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/recipeFragment"
+        android:title="@string/recipes_menu"
+        android:icon="@drawable/book"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/favoriteFragment"
+        android:icon="@drawable/star_outline"
+        app:showAsAction="ifRoom"
+        android:title="@string/favorite_menu"
+        />
+    <item
+        android:id="@+id/otherFragment"
+        android:title="@string/other_menu"
+        android:icon="@drawable/other"
+        app:showAsAction="ifRoom"
+        />
+</menu>
