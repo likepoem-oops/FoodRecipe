@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +19,12 @@ import com.czp.recipe.data.fragment.recipe.adapter.RecipeAdapter
 import com.czp.recipe.data.fragment.recipe.adapter.TypeAdapter
 import com.czp.recipe.data.model.Result
 import com.czp.recipe.databinding.FragmentRecipeBinding
+import com.czp.recipe.util.NetworkResult
+import com.czp.recipe.util.showLog
+import com.czp.recipe.util.showToastLong
+import com.czp.recipe.util.showToastShort
 import com.czp.recipe.viewmodel.MainViewModel
+import kotlinx.coroutines.Dispatchers
 
 class RecipeFragment : Fragment() {
     private lateinit var binding: FragmentRecipeBinding
@@ -32,16 +39,19 @@ class RecipeFragment : Fragment() {
     ): View {
         binding = FragmentRecipeBinding.inflate(inflater)
         recipeViewModel.recipes.observe(viewLifecycleOwner) {
-            if (it.results.isNotEmpty()) {
-                // 结束Shimmer加载效果
-                binding.recipeViewRecyclerView.hideShimmer()
-                // 传递下载数据
-                recipeAdapter.setData(it.results)
-                // 初始化推荐菜单
-                initCommendedView(it.results)
-            } else {
-                // 显示无结果提示
-
+            when (it) {
+                is NetworkResult.Success -> {
+                    binding.recipeViewRecyclerView.hideShimmer()
+                    recipeAdapter.setData(it.data!!.results)
+                }
+                is NetworkResult.Error -> {
+                    binding.recipeViewRecyclerView.hideShimmer()
+                    showToastShort(requireContext(), it.message!!)
+                }
+                is NetworkResult.Loading -> {
+                    binding.recipeViewRecyclerView.showShimmer()
+                }
+                else -> {}
             }
         }
         fetchData("main course")
