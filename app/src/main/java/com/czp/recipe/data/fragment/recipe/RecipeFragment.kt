@@ -43,6 +43,7 @@ class RecipeFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.recipeViewRecyclerView.hideShimmer()
                     recipeAdapter.setData(it.data!!.results)
+                    initCommendedView(it.data.results)
                 }
                 is NetworkResult.Error -> {
                     binding.recipeViewRecyclerView.hideShimmer()
@@ -101,10 +102,11 @@ class RecipeFragment : Fragment() {
         }
     }
     private fun initCommendedView(result: List<Result>) {
+        if (result.isEmpty()) return
         val recommendedRecipe = result[0]
         Glide.with(binding.recommendBg).load(recommendedRecipe.image).into(binding.recommendBg)
         binding.recommendedRecipeName.text = recommendedRecipe.title
-        binding.textView5.text = "${recommendedRecipe.readyInMinutes.toString()}min"
+        binding.textView5.text = "${recommendedRecipe.readyInMinutes}min"
         binding.textView6.text = recommendedRecipe.aggregateLikes.toString()
     }
 
