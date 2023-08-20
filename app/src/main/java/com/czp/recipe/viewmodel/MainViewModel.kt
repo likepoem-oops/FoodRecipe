@@ -28,14 +28,18 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
             // 处于loading状态
             recipes.value = NetworkResult.Loading()
             viewModelScope.launch{
-                val response = remoteRepository.fetchFoodRecipes(type)
-                if (response.isSuccessful) {
-                    // 获取数据成功
-                    recipes.value = NetworkResult.Success(response.body()!!)
-                }else {
-                    // 获取数据失败
-                    recipes.value = NetworkResult.Error(response.message())
-                    Log.v("dao_fu", "com.czp.recipe.viewmodel.MainViewModel -> fetchFoodRecipes(type: String): Internet error...")
+                try {
+                    val response = remoteRepository.fetchFoodRecipes(type)
+                    if (response.isSuccessful) {
+                        // 获取数据成功
+                        recipes.value = NetworkResult.Success(response.body()!!)
+                    }else {
+                        // 获取数据失败
+                        recipes.value = NetworkResult.Error(response.message())
+                        Log.v("dao_fu", "com.czp.recipe.viewmodel.MainViewModel -> fetchFoodRecipes(type: String): Internet error...")
+                    }
+                }catch (e: Exception) {
+                    recipes.value = NetworkResult.Error("time out: ${e.message}")
                 }
             }
         } else {
