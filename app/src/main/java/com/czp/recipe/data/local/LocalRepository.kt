@@ -2,6 +2,7 @@ package com.czp.recipe.data.local
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
 
 class LocalRepository(context: Context) {
     //
@@ -13,7 +14,7 @@ class LocalRepository(context: Context) {
     }
 
     // 查询数据
-    fun getRecipes(type: String): LiveData<List<RecipeEntity>> {
+    fun getRecipes(type: String): Flow<List<RecipeEntity>> {
         return recipeDao.getRecipes(type)
     }
 

@@ -1,11 +1,11 @@
 package com.czp.recipe.data.local
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecipeDao {
@@ -15,7 +15,7 @@ interface RecipeDao {
 
     // 查询数据
     @Query("select * from foodRecipeTable where type=:type")
-    fun getRecipes(type: String): LiveData<List<RecipeEntity>>
+    fun getRecipes(type: String): Flow<List<RecipeEntity>>
 
     // 更新数据
     @Update(onConflict = OnConflictStrategy.REPLACE)
