@@ -7,6 +7,11 @@
         <item name="colorControlActivated">@color/bottom_menu_selected</item>
         <item name="android:textColor">@color/default_text_color</item>
     </style>
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+<!--    <item name="android:windowBackground">@mipmap/launch</item>   //闪屏页图片-->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 
 
     <style name="Theme.FoodRecipe" parent="Base.Theme.FoodRecipe" />
