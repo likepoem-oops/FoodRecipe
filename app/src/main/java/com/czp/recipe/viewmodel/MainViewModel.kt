@@ -32,36 +32,34 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     fun fetchFoodRecipes(type: String) {
         // 处于loading状态
         recipes.value = NetworkResult.Loading()
-        // 判断网络状态
-        if (checkConnection()) {
-            viewModelScope.launch{
-                try {
-                    val response = remoteRepository.fetchFoodRecipes(type)
-                    if (response.isSuccessful) {
-                        // 获取数据成功
-                        recipes.value = NetworkResult.Success(response.body()!!)
-                        // 需要将数据保存到数据库
-                        localRepository.insertRecipe(RecipeEntity(0, type, response.body()!!))
-                    }else {
-                        // 获取数据失败
-                        recipes.value = NetworkResult.Error(response.message())
-                        Log.v("dao_fu", "com.czp.recipe.viewmodel.MainViewModel -> fetchFoodRecipes(type: String): Internet error...")
+        // 首先查看数据库中是否有
+        // 数据库读取
+        viewModelScope.launch {
+            val result = localRepository.getRecipes(type)
+            result.collect {
+                if (it.isNotEmpty()) {
+                    recipes.value = NetworkResult.Success(it.first().recipe)
+                }else {
+                    // 判断是否有网络
+                    if (checkConnection()) {
+                        try {
+                            val response = remoteRepository.fetchFoodRecipes(type)
+                            if (response.isSuccessful) {
+                                // 获取数据成功
+                                recipes.value = NetworkResult.Success(response.body()!!)
+                                // 需要将数据保存到数据库
+                                localRepository.insertRecipe(RecipeEntity(0, type, response.body()!!))
+                            }else {
+                                // 获取数据失败
+                                recipes.value = NetworkResult.Error(response.message())
+                                Log.v("dao_fu", "com.czp.recipe.viewmodel.MainViewModel -> fetchFoodRecipes(type: String): Internet error...")
+                            }
+                        }catch (e: Exception) {
+                            recipes.value = NetworkResult.Error("time out: ${e.message}")
+                        }
+                    } else {
+                        recipes.value = NetworkResult.Error("No Internet...")
                     }
-                }catch (e: Exception) {
-                    recipes.value = NetworkResult.Error("time out: ${e.message}")
-                }
-            }
-        } else {
-            // 数据库读取
-            viewModelScope.launch {
-                val result = localRepository.getRecipes(type)
-                result.collect {
-                    if (it.isNotEmpty()) {
-                        recipes.value = NetworkResult.Success(it.first().recipe)
-                    }else {
-                        recipes.value = NetworkResult.Error("Data Empty...")
-                    }
-
                 }
             }
         }
