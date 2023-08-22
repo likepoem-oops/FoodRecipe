@@ -14,10 +14,19 @@
         android:id="@+id/recipeFragment"
         android:name="com.czp.recipe.data.fragment.recipe.RecipeFragment"
         android:label="fragment_recipe"
-        tools:layout="@layout/fragment_recipe" />
+        tools:layout="@layout/fragment_recipe" >
+        <action
+            android:id="@+id/action_recipeFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/otherFragment"
         android:name="com.czp.recipe.data.fragment.other.OtherFragment"
         android:label="fragment_other"
         tools:layout="@layout/fragment_other" />
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.czp.recipe.data.fragment.recipe.detail.RecipeDetailFragment"
+        android:label="fragment_recipe_detail"
+        tools:layout="@layout/fragment_recipe_detail" />
 </navigation>

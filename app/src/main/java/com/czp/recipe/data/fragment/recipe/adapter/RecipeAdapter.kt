@@ -2,7 +2,9 @@ package com.czp.recipe.data.fragment.recipe.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.czp.recipe.R
 import com.czp.recipe.data.model.Result
 import com.czp.recipe.databinding.RecipeItemBinding
 
@@ -19,6 +21,9 @@ class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
         fun bind(result: Result) {
             binding.result = result
             binding.executePendingBindings()
+            binding.recipeContainer.setOnClickListener {
+                binding.recipeContainer.findNavController().navigate(R.id.action_recipeFragment_to_recipeDetailFragment)
+            }
         }
     }
 
