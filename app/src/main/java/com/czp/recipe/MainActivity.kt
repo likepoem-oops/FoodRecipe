@@ -2,17 +2,12 @@ package com.czp.recipe
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.MotionEvent
-import androidx.activity.viewModels
+
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.czp.recipe.data.remote.UrlString
 import com.czp.recipe.databinding.ActivityMainBinding
-import com.czp.recipe.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
