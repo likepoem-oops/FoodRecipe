@@ -32,5 +32,9 @@
         android:id="@+id/recipeDetailFragment"
         android:name="com.czp.recipe.data.fragment.recipe.detail.RecipeDetailFragment"
         android:label="fragment_recipe_detail"
-        tools:layout="@layout/fragment_recipe_detail" />
+        tools:layout="@layout/fragment_recipe_detail" >
+        <argument
+            android:name="recipe"
+            app:argType="com.czp.recipe.data.model.Result" />
+    </fragment>
 </navigation>

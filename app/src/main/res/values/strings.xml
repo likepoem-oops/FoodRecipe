@@ -10,6 +10,10 @@
     <string name="recipe_welcome_text">Hello! Dao_Fu</string>
     <string name="recipe_greet_text">Ready to cook for lunch?</string>
     <string name="recommended_title">Recommended For Lunch</string>
+    <string name="for_text">Homemade Garlic and Basil French Fries</string>
+    <string name="detail">Details</string>
+    <string name="ingredients">Ingredients</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
