@@ -12,5 +12,7 @@
     <color name="shimmer_item_background">#333233</color>
     <color name="recipe_item_title_default">#D8D8D8</color>
     <color name="summary_text_color">#B8B7B8</color>
+    <color name="ingredient_item_bg_color">#29262E</color>
+    <color name="ingredient_item_text_color">#D8D8D8</color>
 
 </resources>

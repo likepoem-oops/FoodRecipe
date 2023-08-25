@@ -20,6 +20,18 @@ object BindingAdapter {
     }
 
     @JvmStatic
+    @BindingAdapter("loadImageWithName")
+    fun loadImageWithName(imageView: ImageView, url: String) {
+        // 将Url对应的图片下载下来 显示到imageView上
+        // 使用Glide
+        val imageBaseUrl = "https://spoonacular.com/recipeImages/"
+        Glide.with(imageView)
+            .load(imageBaseUrl + url)
+            .placeholder(R.drawable.fastfood)
+            .into(imageView)
+    }
+
+    @JvmStatic
     @BindingAdapter("navigateToDetail")
     fun navigateToDetail(view: View, result: Result) {
         val header = view.findViewById<ImageView>(R.id.show_recipe_img)
