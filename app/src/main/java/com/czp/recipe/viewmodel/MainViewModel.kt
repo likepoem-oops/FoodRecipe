@@ -9,14 +9,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.czp.recipe.data.local.LocalRepository
-import com.czp.recipe.data.local.RecipeEntity
+import com.czp.recipe.data.local.entity.RecipeEntity
 import com.czp.recipe.data.model.FoodRecipeBaseInfo
 import com.czp.recipe.data.remote.RemoteRepository
 import com.czp.recipe.util.NetworkResult
-import com.czp.recipe.util.showToastShort
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
     // 网络请求对象

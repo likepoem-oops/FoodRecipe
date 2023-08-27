@@ -5,11 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.czp.recipe.data.local.entity.FavoriteEntity
+import com.czp.recipe.data.local.entity.RecipeEntity
 import com.czp.recipe.util.RecipeTypeConverter
 
 @TypeConverters(RecipeTypeConverter::class)
 @Database(
-    entities = [RecipeEntity::class],
+    entities = [RecipeEntity::class, FavoriteEntity::class],
     version = 1,
     exportSchema = false
 )

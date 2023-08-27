@@ -1,4 +1,4 @@
-package com.czp.recipe.data.local
+package com.czp.recipe.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
